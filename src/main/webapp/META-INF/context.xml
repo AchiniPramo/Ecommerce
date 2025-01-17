@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource
+            name = "jdbc/pool"
+            type = "javax.sql.DataSource"
+            driverClassName = "com.mysql.jdbc.Driver"
+            url = "jdbc:mysql://localhost:3306/ecommerce"
+            username = "root"
+            password = "Achini1025"
+            maxTotal = "100"
+            initialSize = "100"
+    >
+    </Resource>
+</Context>
