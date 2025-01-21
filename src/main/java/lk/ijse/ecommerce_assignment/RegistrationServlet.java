@@ -22,45 +22,61 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
-        String role = req.getParameter("role");
-        String status = req.getParameter("status");
+        try {
+            String username = req.getParameter("username");
+            String email = req.getParameter("email");
+            String password = req.getParameter("password");
+            String role = req.getParameter("role");
+            String status = "active"; // Default status
 
-        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
-        UserDTO user = new UserDTO(username, email, hashedPassword, role, status);
-
-        try (Connection connection = dataSource.getConnection()) {
-            String sql = "INSERT INTO users (userName, email, password, role, status) VALUES (?, ?, ?, ?, ?)";
-
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, user.getUsername());
-                statement.setString(2, user.getEmail());
-                statement.setString(3, user.getPassword());
-                statement.setString(4, user.getRole());
-                statement.setString(5, user.getStatus());
-
-                int rowsAffected = statement.executeUpdate();
-
-                if (rowsAffected > 0) {
-                    // Success response
-                    req.getSession().setAttribute("message", "Registration successful. Please log in.");
-                    req.getSession().setAttribute("alertType", "success");
-                    resp.sendRedirect("index.jsp");
-                } else {
-                    // Fail response
-                    req.getSession().setAttribute("message", "Registration failed. Please try again.");
-                    req.getSession().setAttribute("alertType", "danger");
-                    resp.sendRedirect("registration.jsp");
-                }
+            if (username == null || username.isEmpty() || email == null || email.isEmpty() ||
+                    password == null || password.isEmpty() || role == null || role.isEmpty()) {
+                req.getSession().setAttribute("message", "All fields are required.");
+                req.getSession().setAttribute("alertType", "danger");
+                resp.sendRedirect("registration.jsp");
+                return;
             }
-        } catch (SQLException e) {
+
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUsername(username);
+            userDTO.setEmail(email);
+            userDTO.setPassword(hashedPassword);
+            userDTO.setRole(role);
+            userDTO.setStatus(status);
+
+            boolean isRegistered = registerUser(userDTO);
+
+            if (isRegistered) {
+                req.getSession().setAttribute("message", "Registration successful. Please log in.");
+                req.getSession().setAttribute("alertType", "success");
+                resp.sendRedirect("index.jsp");
+            } else {
+                req.getSession().setAttribute("message", "Registration failed. Please try again.");
+                req.getSession().setAttribute("alertType", "danger");
+                resp.sendRedirect("registration.jsp");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
-            req.getSession().setAttribute("message", "Database error: " + e.getMessage());
+            req.getSession().setAttribute("message", "An error occurred: " + e.getMessage());
             req.getSession().setAttribute("alertType", "danger");
             resp.sendRedirect("registration.jsp");
+        }
+    }
+
+    private boolean registerUser(UserDTO userDTO) throws SQLException {
+        try (Connection connection = dataSource.getConnection()) {
+            String sql = "INSERT INTO users (userName, email, password, role, status) VALUES (?, ?, ?, ?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, userDTO.getUsername());
+                statement.setString(2, userDTO.getEmail());
+                statement.setString(3, userDTO.getPassword());
+                statement.setString(4, userDTO.getRole());
+                statement.setString(5, userDTO.getStatus());
+
+                return statement.executeUpdate() > 0;
+            }
         }
     }
 }

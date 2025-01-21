@@ -7,11 +7,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import javax.sql.DataSource;
 import org.mindrot.jbcrypt.BCrypt;
 
+import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
@@ -31,17 +34,29 @@ public class LoginServlet extends HttpServlet {
                 statement.setString(1, username);
 
                 ResultSet resultSet = statement.executeQuery();
-
                 if (resultSet.next()) {
                     String storedPassword = resultSet.getString("password");
-                    if (BCrypt.checkpw(password, storedPassword)) {
+                    String role = resultSet.getString("role");
+                    String status = resultSet.getString("status");  // Get the user's status
+
+                    if ("Deactive".equalsIgnoreCase(status)) {
+                        session.setAttribute("message", "Your account is inactive. Please contact support.");
+                        session.setAttribute("alertType", "danger");
+                        resp.sendRedirect("index.jsp");
+
+                    } else if (BCrypt.checkpw(password, storedPassword)) {
                         session.setAttribute("username", username);
-                        session.setAttribute("role", resultSet.getString("role"));
+                        session.setAttribute("role", role);
 
                         session.setAttribute("message", "Login successful! Welcome, " + username + ".");
                         session.setAttribute("alertType", "success");
 
-                        resp.sendRedirect("dashboard.jsp");
+                        if ("admin".equalsIgnoreCase(role)) {
+                            resp.sendRedirect("product_management.jsp");
+
+                        } else {
+                            resp.sendRedirect("dashboard.jsp");
+                        }
                     } else {
                         session.setAttribute("message", "Invalid credentials, please try again.");
                         session.setAttribute("alertType", "danger");
