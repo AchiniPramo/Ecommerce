@@ -3,6 +3,8 @@
 User: user Date: 1/20/2025
 Time: 12:42 PM
 --%>
+<%@ page import="lk.ijse.ecommerce_assignment.dto.CategoryDTO" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +16,7 @@ Time: 12:42 PM
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
+            background-image: url("assets/retailpos.jpg");
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -131,12 +134,13 @@ Time: 12:42 PM
 <body>
 <!-- Navbar -->
 <div class="navbar">
-    <h1>Admin Dashboard</h1>
+    <h1>FusionPay</h1>
     <ul>
         <li><a href="product_management.jsp">Product Management</a></li>
         <li><a href="category_management.jsp">Category Management</a></li>
         <li><a href="order_management.jsp">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
+        <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
 
@@ -159,64 +163,73 @@ Time: 12:42 PM
             </tr>
             </thead>
             <tbody>
+            <%
+                List<lk.ijse.ecommerce_assignment.dto.CategoryDTO> categories =
+                        (List<lk.ijse.ecommerce_assignment.dto.CategoryDTO>) request.getAttribute("categories");
+                if (categories != null) {
+                    for (lk.ijse.ecommerce_assignment.dto.CategoryDTO category : categories) {
+            %>
             <tr>
-                <td>1</td>
-                <td>Electronics</td>
-                <td>Devices, gadgets, and accessories</td>
+                <td><%= category.getId() %></td>
+                <td><%= category.getName() %></td>
+                <td><%= category.getDescription() %></td>
                 <td class="action-buttons">
-                    <button class="edit" onclick="alert('Edit Category 1')">Edit</button>
-                    <button class="delete" onclick="alert('Delete Category 1')">Delete</button>
+                    <button class="btn btn-success btn-sm"
+                            onclick="editCategory('<%= category.getId() %>', '<%= category.getName() %>', '<%= category.getDescription() %>')">Edit</button>
+                    <form style="display:inline;" method="post" action="category-manage">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="id" value="<%= category.getId() %>">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
                 </td>
             </tr>
+            <%      }
+            }
+            %>
             </tbody>
         </table>
     </div>
 </div>
 
-<!-- Bootstrap Modal -->
 <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="categoryModalLabel">Add Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="categoryForm">
+            <form method="post" action="category-manage">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoryModalLabel">Add/Edit Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="action" id="action" value="add">
+                    <input type="hidden" name="id" id="categoryId">
                     <div class="mb-3">
                         <label for="categoryName" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="categoryName" placeholder="Enter category name">
+                        <input type="text" class="form-control" id="categoryName" name="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="categoryDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="categoryDescription" rows="3" placeholder="Enter description"></textarea>
+                        <textarea class="form-control" id="categoryDescription" name="description" rows="3" required></textarea>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" onclick="saveCategory()">Save</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    function saveCategory() {
-        const categoryName = document.getElementById("categoryName").value.trim();
-        const categoryDescription = document.getElementById("categoryDescription").value.trim();
-
-        if (categoryName && categoryDescription) {
-            alert("Category added successfully!");
-            document.getElementById("categoryForm").reset();
-            const modal = bootstrap.Modal.getInstance(document.getElementById("categoryModal"));
-            modal.hide();
-        } else {
-            alert("Please fill in all fields.");
-        }
+    function editCategory(id, name, description) {
+        document.getElementById('action').value = 'edit';
+        document.getElementById('categoryId').value = id;
+        document.getElementById('categoryName').value = name;
+        document.getElementById('categoryDescription').value = description;
+        new bootstrap.Modal(document.getElementById('categoryModal')).show();
     }
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -17,4 +17,8 @@ public class UserDTO implements Serializable {
     private String password;
     private String role;
     private String status;
+
+    public static UserDTO randomUserId() {
+        return randomUserId();
+    }
 }

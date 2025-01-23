@@ -16,6 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
+            background-image: url("assets/retailpos.jpg");
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -136,13 +137,14 @@
         <li><a href="category_management.jsp">Category Management</a></li>
         <li><a href="order_management.jsp">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
+        <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
 
 <!-- Main Content -->
 <div class="main-content">
     <div class="card">
-        <h3>Order Management</h3>
+        <h1>FusionPay</h1>
         <table>
             <thead>
             <tr>

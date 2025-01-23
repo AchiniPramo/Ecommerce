@@ -76,6 +76,15 @@ public class UserManagementServlet extends HttpServlet {
         return users;
     }
 
+//    public class IDGenerator {
+//        public static void main(String[] args) {
+//            // Generate a random UUID
+//            UserDTO uniqueKey = UserDTO.randomUserId();
+//
+//            // Print the unique ID (UUID)
+//            System.out.println("Generated ID: " + uniqueKey.toString());
+//        }
+//    }
     private void updateUserStatus(Connection connection, String username, String newStatus) throws SQLException {
         String updateStatusQuery = "UPDATE users SET status = ? WHERE userName = ?";
         try (PreparedStatement updateStatusStmt = connection.prepareStatement(updateStatusQuery)) {

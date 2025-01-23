@@ -7,21 +7,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <style>
         body {
+            background-image: url("assets/Web_IMG_Retail-POS.png");
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background : linear-gradient(to right, #4e54c8, #8f94fb);
             color: #fff;
             padding: 20px;
         }
         .form-container {
-            background-color: #fff;
+            background-color: #94979f;
             color: #333;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
+            max-width: 700px;
             width: 100%;
         }
         .form-container h1 {

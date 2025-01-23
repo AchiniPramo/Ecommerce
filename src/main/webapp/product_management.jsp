@@ -5,7 +5,6 @@
   Time: 1:36 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
+            background-image: url("assets/retailpos.jpg");
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -133,12 +133,13 @@
 <body>
 <!-- Navbar -->
 <div class="navbar">
-    <h1>Admin Dashboard</h1>
+    <h1>FusionPay</h1>
     <ul>
         <li><a href="product_management.jsp">Product Management</a></li>
         <li><a href="category_management.jsp">Category Management</a></li>
         <li><a href="order_management.jsp">Order Management</a></li>
-        <li><a href="user-manage">User Management</a></li>
+        <li><a href="user_management.jsp">User Management</a></li>
+        <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
 
@@ -162,18 +163,8 @@
                 <th>Action</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Sample Product</td>
-                <td>Electronics</td>
-                <td>$99.99</td>
-                <td>50</td>
-                <td class="action-buttons">
-                    <button class="edit" onclick="alert('Edit Product 1')">Edit</button>
-                    <button class="delete" onclick="alert('Delete Product 1')">Delete</button>
-                </td>
-            </tr>
+            <tbody id="productTableBody">
+            <!-- Product rows will be dynamically added here -->
             </tbody>
         </table>
     </div>
@@ -218,6 +209,8 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    const products = [];
+
     function saveProduct() {
         const productName = document.getElementById("productName").value.trim();
         const productCategory = document.getElementById("productCategory").value.trim();
@@ -225,12 +218,48 @@
         const productStock = document.getElementById("productStock").value.trim();
 
         if (productName && productCategory && productPrice && productStock) {
-            alert("Product added successfully!");
+            const newProduct = {
+                id: products.length + 1,
+                name: productName,
+                category: productCategory,
+                price: parseFloat(productPrice),
+                stock: parseInt(productStock)
+            };
+
+            products.push(newProduct);
+            addProductRow(newProduct);
             document.getElementById("productForm").reset();
             const modal = bootstrap.Modal.getInstance(document.getElementById("productModal"));
             modal.hide();
         } else {
             alert("Please fill in all fields.");
+        }
+    }
+
+    function addProductRow(product) {
+        const tableBody = document.getElementById("productTableBody");
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${product.id}</td>
+            <td>${product.name}</td>
+            <td>${product.category}</td>
+            <td>${product.price.toFixed(2)}</td>
+            <td>${product.stock}</td>
+            <td class="action-buttons">
+                <button class="edit" onclick="editProduct(${product.id})">Edit</button>
+                <button class="delete" onclick="deleteProduct(${product.id})">Delete</button>
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+    }
+
+    function deleteProduct(id) {
+        const index = products.findIndex(product => product.id === id);
+        if (index !== -1) {
+            products.splice(index, 1);
+            document.getElementById("productTableBody").deleteRow(index);
         }
     }
 </script>

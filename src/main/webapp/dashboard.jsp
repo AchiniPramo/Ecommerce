@@ -223,9 +223,9 @@
     <nav>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
-            <li><a href="#products">Products</a></li>
+            <li><a href="product_list.jsp">Product</a></li>
             <li><a href="#categories">Categories</a></li>
-            <li><a href="#orders">Orders</a></li>
+            <li><a href="place_order.jsp">Orders</a></li>
             <li><a href="#users">Users</a></li>
             <li><a href="#settings">Settings</a></li>
             <li><a href="#logout">Logout</a></li>
