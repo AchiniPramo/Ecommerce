@@ -25,7 +25,7 @@ Time: 12:42 PM
 
         /* Navbar */
         .navbar {
-            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            background:#232f3e;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
@@ -59,7 +59,7 @@ Time: 12:42 PM
         }
 
         .navbar ul li:hover {
-            background-color: #2347bd;
+            background-color: #4d4f54;
         }
 
         .main-content {
@@ -73,7 +73,7 @@ Time: 12:42 PM
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
-            background: #b1b2d5;
+            background: #736b6b;
             color: #fff;
         }
 
@@ -96,7 +96,7 @@ Time: 12:42 PM
         }
 
         table th {
-            background-color: #7b7c9a;
+            background-color: #35363d;
             color: #fff;
         }
 
@@ -129,6 +129,31 @@ Time: 12:42 PM
         .btn-primary.btn-sm {
             padding: 5px 10px;
         }
+        /* Notification Styling */
+        .notification {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            width: auto;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #28a745;
+        }
+
+        .error {
+            background-color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -137,12 +162,25 @@ Time: 12:42 PM
     <h1>FusionPay</h1>
     <ul>
         <li><a href="product_management.jsp">Product Management</a></li>
-        <li><a href="category_management.jsp">Category Management</a></li>
+        <li><a href="category_manage">Category Management</a></li>
         <li><a href="order_management.jsp">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
         <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
+
+<%
+    String message = (String) session.getAttribute("message");
+    String messageType = (String) session.getAttribute("messageType");
+    if (message != null && !message.isEmpty()) {
+%>
+<div class="notification <%= messageType != null ? messageType : "success" %>">
+    <%= message %>
+</div>
+<% session.removeAttribute("message"); %>
+<% session.removeAttribute("messageType"); %>
+<% } %>
+
 
 <!-- Main Content -->
 <div class="main-content">
@@ -228,6 +266,14 @@ Time: 12:42 PM
         document.getElementById('categoryDescription').value = description;
         new bootstrap.Modal(document.getElementById('categoryModal')).show();
     }
+</script>
+<script>
+    setTimeout(function () {
+        const notification = document.querySelector('.notification');
+        if (notification) {
+            notification.style.display = 'none';
+        }
+    }, 5000);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

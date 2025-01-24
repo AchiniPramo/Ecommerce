@@ -24,7 +24,7 @@
       padding: 20px;
     }
     .form-container {
-      background-color: #94979f;
+      background-color:  #65686e;
       color: #333;
       padding: 40px;
       border-radius: 15px;
@@ -43,19 +43,20 @@
       font-weight: 500;
     }
     .form-container a {
-      color: #4e54c8;
+      color: #ff9900;
     }
     .form-container a:hover {
       text-decoration: underline;
     }
     .form-container button {
-      background : linear-gradient(to right, #4e54c8, #8f94fb);
+      background-color: #ff9900;
+      color: #0e0d0d;
       border: none;
       font-size: 16px;
       padding: 12px;
     }
     .form-container button:hover {
-      background : linear-gradient(to right, #4e54c8, #8f94fb);
+      background : #ff9900;
     }
   </style>
 </head>

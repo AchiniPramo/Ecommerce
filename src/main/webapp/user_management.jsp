@@ -27,7 +27,7 @@
 
         /* Navbar */
         .navbar {
-            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            background:#232f3e;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
@@ -62,7 +62,7 @@
         }
 
         .navbar ul li:hover {
-            background-color: #2347bd;
+            background-color: #4d4f54;
         }
 
         .main-content {
@@ -76,7 +76,7 @@
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
-            background: #b1b2d5;
+            background: #736b6b;
             color: #fff;
         }
 
@@ -117,7 +117,7 @@
         }
 
         table th {
-            background-color: #7b7c9a;
+            background-color: #35363d;
             color: #fff;
         }
 
@@ -265,7 +265,7 @@
     <h1>FusionPay</h1>
     <ul>
         <li><a href="product_management.jsp">Product Management</a></li>
-        <li><a href="category_management.jsp">Category Management</a></li>
+        <li><a href="category-manage">Category Management</a></li>
         <li><a href="order_management.jsp">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
         <li><a href="index.jsp">Logout</a></li>

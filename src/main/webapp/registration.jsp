@@ -16,7 +16,7 @@
             padding: 20px;
         }
         .form-container {
-            background-color: #94979f;
+            background-color: #65686e;
             color: #333;
             padding: 20px;
             border-radius: 15px;
@@ -35,13 +35,14 @@
             font-weight: 500;
         }
         .form-container button {
-            background : linear-gradient(to right, #4e54c8, #8f94fb);
+            color : #1f1f1f;
+            background-color: #ff9900;
             border: none;
             font-size: 16px;
             padding: 12px;
         }
         .form-container button:hover {
-            background : linear-gradient(to right, #4e54c8, #8f94fb);
+            background-color: #ff9900; /* Gold accent */
         }
         p{
             margin-bottom: 10px;
@@ -82,7 +83,7 @@
             <strong>${message}</strong>
         </div>
     </c:if>
-        <p>Already have an account? <a href="index.jsp" class="text-decoration-none" style="color: #4e54c8;">Login</a></p>
+        <p>Already have an account? <a href="index.jsp" class="text-decoration-none" style=" color: #ff9900;">Login</a></p>
 </div>
 </body>
 </html>

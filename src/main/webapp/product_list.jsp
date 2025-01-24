@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 1/13/2025
-  Time: 8:35 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,88 +6,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* General body styling */
         body {
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #ffffff; /* Dark background */
+            color: #ffffff; /* White text */
         }
+
+        /* Header styles */
+        .header {
+            background-color: #232f3e; /* Amazon-inspired header */
+            padding: 10px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .header a:hover {
+            color: #ff9900; /* Gold accent */
+        }
+
+        /* Product grid styling */
         .product-card {
-            border: 1px solid #ddd;
+            border: 1px solid #333333;
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            background-color: #fff;
+            background-color: #2c2c2c; /* Slightly lighter background for cards */
         }
+
         .product-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgb(123, 124, 154);
         }
+
         .product-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
+
         .product-card-body {
             padding: 15px;
             text-align: center;
         }
+
         .product-card-title {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 10px;
+            color: #ff9900; /* Gold accent for titles */
         }
+
         .product-card-price {
-            color: #28a745;
+            color: #28a745; /* Green price */
             font-size: 1.1rem;
             margin-bottom: 15px;
         }
+
         .product-card button {
             margin: 5px;
+            border-radius: 5px;
         }
+
+        .btn-primary {
+            background-color: #ff9900;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #e68a00;
+        }
+
+        .btn-outline-secondary {
+            border-color: #ff9900;
+            color: #ff9900;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #ff9900;
+            color: #7b7c9a;
+        }
+
+        /* Filter bar styling */
         .filter-bar {
             margin-bottom: 20px;
+            color: #ffffff;
         }
-        .filter-bar input {
-            width: 100%;
-            margin-bottom: 10px;
+
+        .filter-bar input,
+        .filter-bar select {
+            border: 1px solid #6a7073;
+            background-color: #6a7073;
+            color: #ffffff;
+            border-radius: 5px;
         }
-        .navbar-brand {
-            font-weight: bold;
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #232f3e;
+            color: #ffffff;
+            margin-top: 150px;
+        }
+
+        footer a {
+            color: #ff9900;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Products</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Order</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<!-- Header -->
+<div class="header">
+    <a href="#" class="logo"><strong>FusionPay</strong></a>
+    <nav>
+        <a href="product_list.jsp">Products</a>
+        <a href="cart.jsp">Cart</a>
+        <a href="order_placement.jsp">Orders</a>
+        <a href="profile_manage.jsp">Profile</a>
+        <a href="index.jsp" class="logout">Logout</a>
+    </nav>
+</div>
 
 <div class="container my-5">
-    <h1 class="text-center mb-4"></h1>
+    <h1 class="text-center mb-4">Product List</h1>
     <!-- Filter and Sort Bar -->
     <div class="row filter-bar">
         <div class="col-md-4">
@@ -157,6 +210,16 @@
         </div>
     </div>
 </div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 E-Commerce Store. All Rights Reserved.</p>
+    <p>Follow us on
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+    </p>
+</footer>
 
 <script>
     const searchInput = document.getElementById('searchInput');

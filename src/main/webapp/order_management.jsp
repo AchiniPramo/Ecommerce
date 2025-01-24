@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 1/20/2025
-  Time: 9:28 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="lk.ijse.ecommerce_assignment.dto.OrderDTO" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +20,7 @@
 
         /* Navbar */
         .navbar {
-            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            background:#232f3e;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
@@ -50,7 +45,6 @@
 
         .navbar ul li {
             padding: 10px 20px;
-            cursor: pointer;
         }
 
         .navbar ul li a {
@@ -60,7 +54,7 @@
         }
 
         .navbar ul li:hover {
-            background-color: #2347bd;
+            background-color: #4d4f54;
         }
 
         .main-content {
@@ -74,7 +68,7 @@
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
-            background: #b1b2d5;
+            background: #736b6b;
             color: #fff;
         }
 
@@ -97,7 +91,7 @@
         }
 
         table th {
-            background-color: #7b7c9a;
+            background-color: #35363d;
             color: #fff;
         }
 
@@ -126,62 +120,86 @@
         .action-buttons .delete:hover {
             background-color: #c82333;
         }
+
+        .btn-primary.btn-sm {
+            padding: 5px 10px;
+        }
+        /* Notification Styling */
+        .notification {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            width: auto;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #28a745;
+        }
+
+        .error {
+            background-color: #dc3545;
+        }
     </style>
 </head>
 <body>
 <!-- Navbar -->
 <div class="navbar">
-    <h1>Admin Dashboard</h1>
+    <h1>FusionPay</h1>
     <ul>
         <li><a href="product_management.jsp">Product Management</a></li>
-        <li><a href="category_management.jsp">Category Management</a></li>
+        <li><a href="category_manage">Category Management</a></li>
         <li><a href="order_management.jsp">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
         <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
 
-<!-- Main Content -->
 <div class="main-content">
     <div class="card">
-        <h1>FusionPay</h1>
+        <h3>Orders</h3>
         <table>
             <thead>
             <tr>
-                <th>OrderId</th>
+                <th>Order ID</th>
                 <th>Customer</th>
-                <th>Order Date</th>
+                <th>Total Price</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Order Date</th>
             </tr>
             </thead>
             <tbody>
+            <%
+                List<lk.ijse.ecommerce_assignment.dto.OrderDTO> orders =
+                        (List<OrderDTO>) request.getAttribute("orders");
+                if (orders != null) {
+                    for (lk.ijse.ecommerce_assignment.dto.OrderDTO order : orders) {
+            %>
             <tr>
-                <td>101</td>
-                <td>John Doe</td>
-                <td>2025-01-10</td>
-                <td>Pending</td>
-                <td class="action-buttons">
-                    <button class="edit" onclick="alert('Edit Order 101')">Edit</button>
-                    <button class="delete" onclick="alert('Delete Order 101')">Delete</button>
-                </td>
+                <td><%= order.getOrderId() %></td>
+                <td><%= order.getCustomerName() %></td>
+                <td><%= order.getTotalPrice() %></td>
+                <td><%= order.getOrderStatus() %></td>
+                <td><%= order.getCreatedAt() %></td>
             </tr>
-            <tr>
-                <td>102</td>
-                <td>Jane Smith</td>
-                <td>2025-01-12</td>
-                <td>Completed</td>
-                <td class="action-buttons">
-                    <button class="edit" onclick="alert('Edit Order 102')">Edit</button>
-                    <button class="delete" onclick="alert('Delete Order 102')">Delete</button>
-                </td>
-            </tr>
+            <%
+                    }
+                }
+            %>
             </tbody>
         </table>
     </div>
 </div>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -5,235 +5,154 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            background: #f9f9f9;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #ffffff;
         }
 
-        /* Header */
-        .dashboard-header {
-            background: linear-gradient(to right, #4e54c8, #8f94fb);
-            color: #fff;
-            padding: 10px 20px;
+        /* Header styles */
+        .header {
+            background-color: #232f3e; /* Amazon-inspired header */
+            padding: 10px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-        }
-        .dashboard-header .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .dashboard-header .nav-links {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 0;
-        }
-        .dashboard-header .nav-links a {
-            color: #fff;
-            font-weight: 500;
         }
 
-        /* Sidebar */
-        .sidebar {
-            background: #333;
-            color: #fff;
-            width: 250px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .sidebar .sidebar-links {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar .sidebar-links a {
-            color: #bbb;
-            display: block;
-            padding: 10px 15px;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-        .sidebar .sidebar-links a:hover {
-            background: #444;
-            color: #fff;
+        .header a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
         }
 
-        .main-content {
-            flex: 1;
-            padding: 20px;
+        .header a:hover {
+            color: #ff9900; /* Gold accent */
         }
+
+        /* Stats overview cards */
         .stats-overview {
             display: flex;
             gap: 20px;
-            margin-bottom: 30px;
-            justify-content: space-evenly;
+            margin: 20px auto;
+            justify-content: space-around;
             flex-wrap: wrap;
+            max-width: 1200px;
         }
+
         .stat-card {
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #645959;
+            border: 1px solid #645959;
+            border-radius: 10px;
             padding: 20px;
             text-align: center;
             flex: 1;
-            max-width: 200px;
+            min-width: 200px;
+            max-width: 250px;
+            color: #ffffff;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(123, 124, 154, 0.5);
+        }
+
         .stat-card i {
             font-size: 30px;
-            color: #4e54c8;
+            color: #ff9900;
         }
+
         .stat-card h3 {
             margin: 15px 0 10px;
             font-size: 18px;
         }
+
         .stat-card p {
             font-size: 24px;
             font-weight: bold;
             margin: 0;
         }
 
-        /* Graph Section */
+        /* Graph section */
         .graphs {
             display: flex;
             gap: 20px;
+            margin: 20px auto;
             flex-wrap: wrap;
+            max-width: 1200px;
         }
+
         .graph-card {
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #2c2c2c;
+            border: 1px solid #5d5454;
+            border-radius: 10px;
             padding: 20px;
             flex: 1;
             min-width: 300px;
+            color: #ffffff;
         }
+
+        .graph-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ff9900;
+        }
+
         .graph-card canvas {
             max-width: 100%;
         }
 
-        /*!* Actions Table *!*/
-        /*.product-table {*/
-        /*  width: 100%;*/
-        /*  border-collapse: collapse;*/
-        /*  background: #fff;*/
-        /*  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);*/
-        /*  border-radius: 15px;*/
-        /*  overflow: hidden;*/
-        /*}*/
-        /*.product-table thead {*/
-        /*  background: #4e54c8;*/
-        /*  color: #fff;*/
-        /*}*/
-        /*.product-table th, .product-table td {*/
-        /*  padding: 15px;*/
-        /*  text-align: left;*/
-        /*}*/
-        /*.product-table tbody tr {*/
-        /*  transition: background 0.3s;*/
-        /*}*/
-        /*.product-table tbody tr:hover {*/
-        /*  background: #f4f4f4;*/
-        /*}*/
-        /*.edit-btn, .delete-btn {*/
-        /*  border: none;*/
-        /*  padding: 10px 15px;*/
-        /*  border-radius: 5px;*/
-        /*  cursor: pointer;*/
-        /*}*/
-        /*.edit-btn {*/
-        /*  background: #4caf50;*/
-        /*  color: #fff;*/
-        /*}*/
-        /*.delete-btn {*/
-        /*  background: #f44336;*/
-        /*  color: #fff;*/
-        /*}*/
-
-        .form-container {
-            background-color: #fff;
-            color: #333;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
-            width: 100%;
-        }
-        .form-container h1 {
-            margin-bottom: 30px;
-            font-size: 28px;
-            font-weight: bold;
+        /* Footer styling */
+        footer {
             text-align: center;
-            color: #333;
+            padding: 10px 0;
+            background-color: #232f3e;
+            color: #ffffff;
+            margin-top: 50px;
         }
-        .form-container .form-label {
-            font-weight: 500;
+
+        footer a {
+            color: #ff9900;
+            text-decoration: none;
+            margin: 0 5px;
         }
-        .form-container a {
-            color: #ff7e5f;
-        }
-        .form-container a:hover {
+
+        footer a:hover {
             text-decoration: underline;
-        }
-        .form-container button {
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            border: none;
-            font-size: 16px;
-            padding: 12px;
-        }
-        .form-container button:hover {
-            background: linear-gradient(to left, #ff7e5f, #feb47b);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .dashboard-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .stats-overview {
-                flex-direction: column;
-                align-items: center;
-            }
+            .stats-overview,
             .graphs {
                 flex-direction: column;
-                gap: 20px;
-            }
-            .sidebar {
-                display: none;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-<header class="dashboard-header">
-    <div class="logo">Dashboard</div>
+<!-- Header -->
+<div class="header">
+    <a href="#" class="logo"><strong>FusionPay</strong></a>
     <nav>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="product_list.jsp">Product</a></li>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="place_order.jsp">Orders</a></li>
-            <li><a href="#users">Users</a></li>
-            <li><a href="#settings">Settings</a></li>
-            <li><a href="#logout">Logout</a></li>
-        </ul>
+        <a href="product_list.jsp">Products</a>
+        <a href="cart.jsp">Cart</a>
+        <a href="order_placement.jsp">Orders</a>
+        <a href="profile_manage.jsp">Profile</a>
+        <a href="index.jsp" class="logout">Logout</a>
     </nav>
-</header>
+</div>
 
-<main class="main-content">
+<!-- Main Content -->
+<main>
+    <!-- Stats Overview -->
     <section class="stats-overview">
         <div class="stat-card">
             <i class="fa fa-box-open"></i>
@@ -257,6 +176,7 @@
         </div>
     </section>
 
+    <!-- Graphs -->
     <section class="graphs">
         <div class="graph-card">
             <h3>Monthly Sales Trends</h3>
@@ -267,45 +187,24 @@
             <canvas id="topCategories"></canvas>
         </div>
     </section>
-
-    <%--  <section class="actions">--%>
-    <%--    <h3>Product Management</h3>--%>
-    <%--    <table class="product-table">--%>
-    <%--      <thead>--%>
-    <%--      <tr>--%>
-    <%--        <th>Product</th>--%>
-    <%--        <th>Category</th>--%>
-    <%--        <th>Price</th>--%>
-    <%--        <th>Actions</th>--%>
-    <%--      </tr>--%>
-    <%--      </thead>--%>
-    <%--      <tbody>--%>
-    <%--      <tr>--%>
-    <%--        <td>Product 1</td>--%>
-    <%--        <td>Electronics</td>--%>
-    <%--        <td>$50</td>--%>
-    <%--        <td><button class="edit-btn">Edit</button> <button class="delete-btn">Delete</button></td>--%>
-    <%--      </tr>--%>
-    <%--      <tr>--%>
-    <%--        <td>Product 2</td>--%>
-    <%--        <td>Fashion</td>--%>
-    <%--        <td>$30</td>--%>
-    <%--        <td><button class="edit-btn">Edit</button> <button class="delete-btn">Delete</button></td>--%>
-    <%--      </tr>--%>
-    <%--      </tbody>--%>
-    <%--    </table>--%>
-    <%--  </section>--%>
 </main>
-        </div>
-    </div>
-</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 E-Commerce Store. All Rights Reserved.</p>
+    <p>Follow us on
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+    </p>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Example chart.js code to render the graphs
+    // Chart.js for Sales Trends
     const ctxSales = document.getElementById('salesTrends').getContext('2d');
-    const salesChart = new Chart(ctxSales, {
+    new Chart(ctxSales, {
         type: 'line',
         data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June'],
@@ -322,8 +221,9 @@
         }
     });
 
+    // Chart.js for Top Categories
     const ctxCategories = document.getElementById('topCategories').getContext('2d');
-    const categoriesChart = new Chart(ctxCategories, {
+    new Chart(ctxCategories, {
         type: 'bar',
         data: {
             labels: ['Electronics', 'Fashion', 'Home', 'Beauty', 'Sports'],
