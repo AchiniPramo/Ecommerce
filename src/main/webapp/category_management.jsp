@@ -200,7 +200,6 @@ Time: 12:42 PM
         <table>
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Category Name</th>
                 <th>Description</th>
                 <th>Action</th>
@@ -214,7 +213,6 @@ Time: 12:42 PM
                     for (lk.ijse.ecommerce_assignment.dto.CategoryDTO category : categories) {
             %>
             <tr>
-                <td><%= category.getId() %></td>
                 <td><%= category.getName() %></td>
                 <td><%= category.getDescription() %></td>
                 <td class="action-buttons">

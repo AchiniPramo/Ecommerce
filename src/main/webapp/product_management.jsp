@@ -64,6 +64,11 @@
         .navbar ul li:hover {
             background-color: #4d4f54;
         }
+        h1 a{
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
 
         .main-content {
             margin-top: 80px;
@@ -132,12 +137,38 @@
         .btn-primary.btn-sm {
             padding: 5px 10px;
         }
+
+        /* Notification Styling */
+        .notification {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            width: auto;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #28a745;
+        }
+
+        .error {
+            background-color: #dc3545;
+        }
     </style>
 </head>
 <body>
 <!-- Navbar -->
 <div class="navbar">
-    <h1>FusionPay</h1>
+    <h1><a href="dashboard.jsp">FusionPay</a></h1>
     <ul>
         <li><a href="product-manage">Product Management</a></li>
         <li><a href="category-manage">Category Management</a></li>
@@ -146,6 +177,18 @@
         <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
+
+<%
+    String message = (String) session.getAttribute("message");
+    String messageType = (String) session.getAttribute("messageType");
+    if (message != null && !message.isEmpty()) {
+%>
+<div class="notification <%= messageType != null ? messageType : "success" %>">
+    <%= message %>
+</div>
+<% session.removeAttribute("message"); %>
+<% session.removeAttribute("messageType"); %>
+<% } %>
 
 <div class="main-content">
     <div class="card">
@@ -338,6 +381,14 @@
         document.getElementById('editProductPrice').value = price;
         document.getElementById('editProductStock').value = stock;
     }
+</script>
+<script>
+    setTimeout(function () {
+        const notification = document.querySelector('.notification');
+        if (notification) {
+            notification.style.display = 'none';
+        }
+    }, 5000);
 </script>
 </body>
 </html>
