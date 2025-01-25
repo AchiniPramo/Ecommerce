@@ -1,4 +1,4 @@
-package lk.ijse.ecommerce_assignment;
+package lk.ijse.ecommerce_assignment.customer;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
@@ -16,19 +16,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet(name = "AdminLoginServlet", value = "/admin")
-public class AdminLoginServlet extends HttpServlet {
+@WebServlet(name = "LoginServlet", value = "/login")
+public class LoginServlet extends HttpServlet {
 
     @Resource(name = "java:comp/env/jdbc/pool")
     private DataSource dataSource;
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
         HttpSession session = req.getSession();
 
-        try (Connection connection = dataSource.getConnection()) {  // Use injected DataSource
+        try (Connection connection = dataSource.getConnection()) { // Use injected DataSource
             String sql = "SELECT * FROM users WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, username);
@@ -37,43 +38,43 @@ public class AdminLoginServlet extends HttpServlet {
                 if (resultSet.next()) {
                     String storedPassword = resultSet.getString("password");
                     String role = resultSet.getString("role");
-                    String status = resultSet.getString("status");  // Get the user's status
+                    String status = resultSet.getString("status"); // Get the user's status
 
                     if ("Deactive".equalsIgnoreCase(status)) {
                         session.setAttribute("message", "Your account is inactive. Please contact support.");
                         session.setAttribute("alertType", "danger");
-                        resp.sendRedirect("admin_login.jsp");
+                        resp.sendRedirect("index.jsp");
 
                     } else if (BCrypt.checkpw(password, storedPassword)) {
-                        session.setAttribute("username", username);
-                        session.setAttribute("role", role);
+                        if ("customer".equalsIgnoreCase(role)) { // Allow login for customers only
+                            session.setAttribute("username", username);
+                            session.setAttribute("role", role);
 
-                        session.setAttribute("message", "Login successful! Welcome, " + username + ".");
-                        session.setAttribute("alertType", "success");
+                            session.setAttribute("message", "Login successful! Welcome, " + username + ".");
+                            session.setAttribute("alertType", "success");
 
-                        if ("admin".equalsIgnoreCase(role)) {
-                            resp.sendRedirect("dashboard.jsp");
-
+                            resp.sendRedirect("product_list.jsp");
                         } else {
-                            resp.sendRedirect("cart.jsp");
+                            session.setAttribute("message", "Access restricted to customers only.");
+                            session.setAttribute("alertType", "danger");
+                            resp.sendRedirect("index.jsp");
                         }
                     } else {
                         session.setAttribute("message", "Invalid credentials, please try again.");
                         session.setAttribute("alertType", "danger");
-                        resp.sendRedirect("admin_login.jsp");
+                        resp.sendRedirect("index.jsp");
                     }
                 } else {
                     session.setAttribute("message", "User not found.");
                     session.setAttribute("alertType", "danger");
-                    resp.sendRedirect("admin_login.jsp");
+                    resp.sendRedirect("index.jsp");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             session.setAttribute("message", "Database error: " + e.getMessage());
             session.setAttribute("alertType", "danger");
-            resp.sendRedirect("admin_login.jsp");
+            resp.sendRedirect("index.jsp");
         }
     }
 }
-

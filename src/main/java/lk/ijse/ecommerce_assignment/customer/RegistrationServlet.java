@@ -1,4 +1,4 @@
-package lk.ijse.ecommerce_assignment;
+package lk.ijse.ecommerce_assignment.customer;
 
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
