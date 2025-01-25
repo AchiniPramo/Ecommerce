@@ -81,8 +81,7 @@ Ecommerce_Assignment/
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/ecommerce-app.git
-   cd ecommerce-app
+   https://github.com/AchiniPramo/Ecommerce.git
    ```
 
 2. Import the project into your IDE (e.g., IntelliJ IDEA).  
