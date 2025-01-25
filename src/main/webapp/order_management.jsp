@@ -162,8 +162,8 @@
 <div class="navbar">
     <h1><a href="dashboard.jsp">FusionPay</a></h1>
     <ul>
-        <li><a href="product-manage">Product Management</a></li>
         <li><a href="category-manage">Category Management</a></li>
+        <li><a href="product-manage">Product Management</a></li>
         <li><a href="order-manage">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
         <li><a href="index.jsp">Logout</a></li>
@@ -178,7 +178,7 @@
             <tr>
                 <th>Order ID</th>
                 <th>Customer</th>
-                <th>Total Price</th>
+                <th>Total Price  (Rs.)</th>
                 <th>Status</th>
                 <th>Order Date</th>
             </tr>

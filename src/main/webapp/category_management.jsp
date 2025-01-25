@@ -167,8 +167,8 @@ Time: 12:42 PM
 <div class="navbar">
     <h1><a href="dashboard.jsp">FusionPay</a></h1>
     <ul>
-        <li><a href="product-manage">Product Management</a></li>
         <li><a href="category-manage">Category Management</a></li>
+        <li><a href="product-manage">Product Management</a></li>
         <li><a href="order-manage">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
         <li><a href="index.jsp">Logout</a></li>

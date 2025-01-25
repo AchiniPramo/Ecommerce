@@ -170,8 +170,8 @@
 <div class="navbar">
     <h1><a href="dashboard.jsp">FusionPay</a></h1>
     <ul>
-        <li><a href="product-manage">Product Management</a></li>
         <li><a href="category-manage">Category Management</a></li>
+        <li><a href="product-manage">Product Management</a></li>
         <li><a href="order-manage">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
         <li><a href="index.jsp">Logout</a></li>
@@ -207,10 +207,9 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Product ID</th>
-                    <th>Name</th>
+                    <th>Product Name</th>
                     <th>Category</th>
-                    <th>Price</th>
+                    <th>Price  (Rs.)</th>
                     <th>Stock</th>
                     <th>Photos</th>
                     <th>Actions</th>
@@ -228,13 +227,11 @@
                         }
                 %>
                 <tr>
-                    <td><%= product.getProductId() %>
-                    </td>
                     <td><%= product.getName() %>
                     </td>
                     <td><%= product.getCategoryId() %>
                     </td>
-                    <td>$<%= product.getPrice() %>
+                    <td><%= product.getPrice() %>
                     </td>
                     <td><%= product.getStock() %>
                     </td>
@@ -273,7 +270,7 @@
         </div>
     </div>
 
-    <!-- Add Product Modal -->
+<%--    Add Product Modal --%>
     <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -322,7 +319,7 @@
         </div>
     </div>
 
-    <!-- Edit Product Modal -->
+<%-- Edit Product Modal --%>
     <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
