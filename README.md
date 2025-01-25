@@ -19,10 +19,9 @@ This application is a complete **E-Commerce system** built to demonstrate modern
 
 ## 📸 Screenshots  
 
-### **Home Page**  
+### **Login Page**  
 _Description: A welcoming homepage displaying featured categories and products._  
-![Home Page](#)  
-
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/150a38494bdb649fba819d779b23f208917ad5b9/Login.PNG)
 ### **Product Listing**  
 _Description: A list of products filtered by category._  
 ![Product List](#)  
