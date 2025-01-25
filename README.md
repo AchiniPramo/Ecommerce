@@ -19,12 +19,11 @@ This application is a complete **E-Commerce system** built to demonstrate modern
 
 ## 📸 Screenshots  
 
-### **Login Page**  
-_Description: A welcoming homepage displaying featured categories and products._  
+### **Login Form**  
 ![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/150a38494bdb649fba819d779b23f208917ad5b9/Login.PNG)
-### **Product Listing**  
-_Description: A list of products filtered by category._  
-![Product List](#)  
+
+### **Register Form**   
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/57744db0b1d5177f295a5f62910e0b8e47b3f6a9/Register.PNG)  
 
 ### **Shopping Cart**  
 _Description: A dynamic cart to manage selected products._  
