@@ -8,31 +8,61 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
+            background-image: url("assets/retailpos.jpg");
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #ffffff;
+            background-color: #f4f4f9;
         }
 
-        /* Header styles */
-        .header {
-            background-color: #232f3e; /* Amazon-inspired header */
-            padding: 10px 10px;
+        /* Navbar */
+        .navbar {
+            background: #232f3e;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: white;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
-        .header a {
-            color: #ffffff;
+        .navbar h1 {
+            margin: 0;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            padding: 10px 20px;
+        }
+
+        .navbar ul li a {
             text-decoration: none;
-            font-size: 16px;
-            margin: 0 10px;
+            color: white;
+            font-weight: bold;
         }
 
-        .header a:hover {
-            color: #ff9900; /* Gold accent */
+        .navbar ul li:hover {
+            background-color: #4d4f54;
+        }
+
+        h1 a{
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .main-content {
+            margin-top: 80px;
+            padding: 20px;
         }
 
         /* Stats overview cards */
@@ -138,20 +168,20 @@
     </style>
 </head>
 <body>
-<!-- Header -->
-<div class="header">
-    <a href="#" class="logo"><strong>FusionPay</strong></a>
-    <nav>
-        <a href="product_list.jsp">Products</a>
-        <a href="cart.jsp">Cart</a>
-        <a href="order_placement.jsp">Orders</a>
-        <a href="profile_manage.jsp">Profile</a>
-        <a href="index.jsp" class="logout">Logout</a>
-    </nav>
+<!-- Navbar -->
+<div class="navbar">
+    <h1><a href="dashboard.jsp">FusionPay</a></h1>
+    <ul>
+        <li><a href="product_manage">Product Management</a></li>
+        <li><a href="category-manage">Category Management</a></li>
+        <li><a href="order_manage">Order Management</a></li>
+        <li><a href="user_manage">User Management</a></li>
+        <li><a href="index.jsp">Logout</a></li>
+    </ul>
 </div>
 
 <!-- Main Content -->
-<main>
+<main class="main-content">
     <!-- Stats Overview -->
     <section class="stats-overview">
         <div class="stat-card">

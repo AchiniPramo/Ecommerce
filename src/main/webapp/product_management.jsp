@@ -1,4 +1,8 @@
-<%--
+<%@ page import="lk.ijse.ecommerce_assignment.dto.CategoryDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="lk.ijse.ecommerce_assignment.dto.ProductPhotoDTO" %>
+<%@ page import="lk.ijse.ecommerce_assignment.dto.ProductDTO" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 1/21/2025
@@ -24,7 +28,7 @@
 
         /* Navbar */
         .navbar {
-            background:#232f3e;
+            background: #232f3e;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
@@ -135,132 +139,204 @@
 <div class="navbar">
     <h1>FusionPay</h1>
     <ul>
-        <li><a href="product_management.jsp">Product Management</a></li>
+        <li><a href="product-manage">Product Management</a></li>
         <li><a href="category-manage">Category Management</a></li>
-        <li><a href="order_manage">Order Management</a></li>
-        <li><a href="user_manage">User Management</a></li>
+        <li><a href="order-manage">Order Management</a></li>
+        <li><a href="user-manage">User Management</a></li>
         <li><a href="index.jsp">Logout</a></li>
     </ul>
 </div>
 
-<!-- Main Content -->
 <div class="main-content">
     <div class="card">
-        <h3>Product Management</h3>
-        <div style="text-align: left;">
-            <button type="button" class="btn btn-primary btn-sm" style="width: auto;" data-bs-toggle="modal" data-bs-target="#productModal">
+        <div id="products" class="table-container">
+            <h2>Product Management</h2>
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addProductModal">
                 Add Product
             </button>
+
+            <!-- Product Table -->
+            <%
+                List<ProductDTO> products = (List<ProductDTO>) request.getAttribute("products");
+                List<ProductPhotoDTO> productPhotos = (List<ProductPhotoDTO>) request.getAttribute("productPhotos");
+                if (products != null && !products.isEmpty()) {
+            %>
+            <table>
+                <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Photos</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%
+                    for (ProductDTO product : products) {
+                        // Get the photos for the current product
+                        List<String> photoUrls = new ArrayList<>();
+                        for (ProductPhotoDTO photo : productPhotos) {
+                            if (photo.getProductId() == product.getProductId()) {
+                                photoUrls.add(photo.getPhotoUrl());
+                            }
+                        }
+                %>
+                <tr>
+                    <td><%= product.getProductId() %>
+                    </td>
+                    <td><%= product.getName() %>
+                    </td>
+                    <td><%= product.getCategoryId() %>
+                    </td>
+                    <td>$<%= product.getPrice() %>
+                    </td>
+                    <td><%= product.getStock() %>
+                    </td>
+                    <td>
+                        <%
+                            if (photoUrls != null && !photoUrls.isEmpty()) {
+                                for (String photoUrl : photoUrls) {
+                        %>
+                        <img src="${pageContext.request.contextPath}/<%= photoUrl %>" alt="Product Image"
+                             style="width: 50px; height: 50px; margin-right: 5px;">
+                        <%
+                                }
+                            }
+                        %>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editProductModal"
+                                onclick="populateEditModal('<%= product.getProductId() %>', '<%= product.getName() %>', '<%= product.getCategoryId() %>', '<%= product.getPrice() %>', '<%= product.getStock() %>')">
+                            Edit
+                        </button>
+                        <form action="product-manage" method="post" style="display:inline;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="id" value="<%= product.getProductId() %>">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+            <% } else { %>
+            <p>No products available to display.</p>
+            <% } %>
         </div>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Product Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody id="productTableBody">
-            <!-- Product rows will be dynamically added here -->
-            </tbody>
-        </table>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="product-manage?action=add" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="productName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productCategory" class="form-label">Category</label>
+                            <select class="form-select" id="productCategory" name="categoryId" required>
+                                <% for (CategoryDTO category : (List<CategoryDTO>) request.getAttribute("categories")) { %>
+                                <option value="<%= category.getId() %>"><%= category.getName() %>
+                                </option>
+                                <% } %>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Price</label>
+                            <input type="number" step="0.01" class="form-control" id="productPrice" name="price"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productStock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="productStock" name="stock" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPhotos" class="form-label">Upload Photos (Max 5)</label>
+                            <input type="file" class="form-control" id="productPhotos" name="photos" multiple
+                                   accept="image/*">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="product-manage?action=edit" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="editProductId" name="id">
+                        <div class="mb-3">
+                            <label for="editProductName" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="editProductName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductCategory" class="form-label">Category</label>
+                            <select class="form-select" id="editProductCategory" name="categoryId" required>
+                                <% for (CategoryDTO category : (List<CategoryDTO>) request.getAttribute("categories")) { %>
+                                <option value="<%= category.getId() %>"><%= category.getName() %>
+                                </option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductPrice" class="form-label">Price</label>
+                            <input type="number" step="0.01" class="form-control" id="editProductPrice" name="price"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductStock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="editProductStock" name="stock" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editProductPhotos" class="form-label">Upload New Photos</label>
+                            <input type="file" class="form-control" id="editProductPhotos" name="photos" multiple
+                                   accept="image/*">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- Bootstrap Modal -->
-<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="productModalLabel">Add Product</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="productForm">
-                    <div class="mb-3">
-                        <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="productName" placeholder="Enter product name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="productCategory" class="form-label">Category</label>
-                        <input type="text" class="form-control" id="productCategory" placeholder="Enter category">
-                    </div>
-                    <div class="mb-3">
-                        <label for="productPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="productPrice" placeholder="Enter price">
-                    </div>
-                    <div class="mb-3">
-                        <label for="productStock" class="form-label">Stock</label>
-                        <input type="number" class="form-control" id="productStock" placeholder="Enter stock quantity">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-success" onclick="saveProduct()">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    const products = [];
-
-    function saveProduct() {
-        const productName = document.getElementById("productName").value.trim();
-        const productCategory = document.getElementById("productCategory").value.trim();
-        const productPrice = document.getElementById("productPrice").value.trim();
-        const productStock = document.getElementById("productStock").value.trim();
-
-        if (productName && productCategory && productPrice && productStock) {
-            const newProduct = {
-                id: products.length + 1,
-                name: productName,
-                category: productCategory,
-                price: parseFloat(productPrice),
-                stock: parseInt(productStock)
-            };
-
-            products.push(newProduct);
-            addProductRow(newProduct);
-            document.getElementById("productForm").reset();
-            const modal = bootstrap.Modal.getInstance(document.getElementById("productModal"));
-            modal.hide();
-        } else {
-            alert("Please fill in all fields.");
-        }
-    }
-
-    function addProductRow(product) {
-        const tableBody = document.getElementById("productTableBody");
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-            <td>${product.id}</td>
-            <td>${product.name}</td>
-            <td>${product.category}</td>
-            <td>${product.price.toFixed(2)}</td>
-            <td>${product.stock}</td>
-            <td class="action-buttons">
-                <button class="edit" onclick="editProduct(${product.id})">Edit</button>
-                <button class="delete" onclick="deleteProduct(${product.id})">Delete</button>
-            </td>
-        `;
-
-        tableBody.appendChild(row);
-    }
-
-    function deleteProduct(id) {
-        const index = products.findIndex(product => product.id === id);
-        if (index !== -1) {
-            products.splice(index, 1);
-            document.getElementById("productTableBody").deleteRow(index);
-        }
+    function populateEditModal(id, name, categoryId, price, stock) {
+        document.getElementById('editProductId').value = id;
+        document.getElementById('editProductName').value = name;
+        document.getElementById('editProductCategory').value = categoryId;
+        document.getElementById('editProductPrice').value = price;
+        document.getElementById('editProductStock').value = stock;
     }
 </script>
 </body>

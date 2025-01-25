@@ -65,6 +65,12 @@
             background-color: #4d4f54;
         }
 
+        h1 a{
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
         .main-content {
             margin-top: 80px;
             padding: 20px;
@@ -262,11 +268,11 @@
 <body>
 <!-- Navbar -->
 <div class="navbar">
-    <h1>FusionPay</h1>
+    <h1><a href="dashboard.jsp">FusionPay</a></h1>
     <ul>
-        <li><a href="product_management.jsp">Product Management</a></li>
+        <li><a href="product-manage">Product Management</a></li>
         <li><a href="category-manage">Category Management</a></li>
-        <li><a href="order_management.jsp">Order Management</a></li>
+        <li><a href="order-manage">Order Management</a></li>
         <li><a href="user-manage">User Management</a></li>
         <li><a href="index.jsp">Logout</a></li>
     </ul>
