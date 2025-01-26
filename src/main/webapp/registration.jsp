@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-image: url("assets/Web_IMG_Retail-POS.png");
+            background-image: url("assets/internet-makes-trading-comfortable-online-store-grew-unprecedented-pace_1150-51085.jpg");
             display: flex;
             justify-content: center;
             align-items: center;

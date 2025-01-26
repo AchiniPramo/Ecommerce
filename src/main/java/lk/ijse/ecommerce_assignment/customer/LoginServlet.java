@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lk.ijse.ecommerce_assignment.dto.UserDTO;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.sql.DataSource;
@@ -29,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
 
-        try (Connection connection = dataSource.getConnection()) { // Use injected DataSource
+        try (Connection connection = dataSource.getConnection()) {
             String sql = "SELECT * FROM users WHERE username = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, username);
@@ -38,19 +39,29 @@ public class LoginServlet extends HttpServlet {
                 if (resultSet.next()) {
                     String storedPassword = resultSet.getString("password");
                     String role = resultSet.getString("role");
-                    String status = resultSet.getString("status"); // Get the user's status
+                    String status = resultSet.getString("status");
 
-                    if ("Deactive".equalsIgnoreCase(status)) {
+                    // Create UserDTO from the retrieved data
+                    UserDTO userDTO = new UserDTO(
+                            resultSet.getInt("userId"), // Assuming user_id is a column
+                            username,
+                            resultSet.getString("email"),
+                            storedPassword,
+                            role,
+                            status
+                    );
+
+                    if ("Deactive".equalsIgnoreCase(userDTO.getStatus())) {
                         session.setAttribute("message", "Your account is inactive. Please contact support.");
                         session.setAttribute("alertType", "danger");
                         resp.sendRedirect("index.jsp");
 
-                    } else if (BCrypt.checkpw(password, storedPassword)) {
-                        if ("customer".equalsIgnoreCase(role)) { // Allow login for customers only
-                            session.setAttribute("username", username);
-                            session.setAttribute("role", role);
+                    } else if (BCrypt.checkpw(password, userDTO.getPassword())) {
+                        if ("customer".equalsIgnoreCase(userDTO.getRole())) {
+                            // Store the UserDTO object in the session
+                            session.setAttribute("user", userDTO);
 
-                            session.setAttribute("message", "Login successful! Welcome, " + username + ".");
+                            session.setAttribute("message", "Login successful! Welcome, " + userDTO.getUsername() + ".");
                             session.setAttribute("alertType", "success");
 
                             resp.sendRedirect("product_list.jsp");

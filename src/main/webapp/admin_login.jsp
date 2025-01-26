@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <style>
         body {
-            background-image: url("assets/Web_IMG_Retail-POS.png");
+            background-image: url("assets/boy-is-sitting-front-computer-bag-shopping-bags_1328214-2056.jpg");
             display: flex;
             justify-content: center;
             align-items: center;
@@ -63,14 +63,20 @@
 <body>
 <div class="form-container">
     <h1>Login</h1>
-    <%--  Display the message from session --%>
-    <c:if test="${not empty sessionScope.message}">
-        <div class="alert alert-${sessionScope.alertType} mt-4" role="alert">
-            <strong>${sessionScope.message}</strong>
-        </div>
-        <c:remove var="message"/>
-        <c:remove var="alertType"/>
-    </c:if>
+    <%-- Display the message from session --%>
+    <%
+        String message = (String) session.getAttribute("message");
+        String alertType = (String) session.getAttribute("alertType");
+        if (message != null && !message.isEmpty()) {
+    %>
+    <div class="alert alert-<%= alertType %> mt-4" role="alert">
+        <strong><%= message %></strong>
+    </div>
+    <%
+            session.removeAttribute("message");
+            session.removeAttribute("alertType");
+        }
+    %>
 
     <form class="mt-4" method="POST" action="admin">
         <div class="mb-4">

@@ -149,7 +149,6 @@ public class ProductManagementServlet extends HttpServlet {
             productStmt.setInt(5, productId);
             productStmt.executeUpdate();
 
-            // Optionally update photos (limit to 5 photos)
             try (PreparedStatement photoStmt = conn.prepareStatement(insertPhotoSQL)) {
                 int photoCount = 0;
                 for (Part filePart : request.getParts()) {
@@ -171,9 +170,7 @@ public class ProductManagementServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Deletes a product and its associated photos.
-     */
+
     private void deleteProduct(HttpServletRequest request) throws SQLException {
         int productId = Integer.parseInt(request.getParameter("id"));
 
@@ -192,9 +189,7 @@ public class ProductManagementServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Extracts the file name from the file part.
-     */
+
     private String extractFileName(Part filePart) {
         String contentDisposition = filePart.getHeader("content-disposition");
         for (String content : contentDisposition.split(";")) {
@@ -205,9 +200,6 @@ public class ProductManagementServlet extends HttpServlet {
         return null;
     }
 
-    /**
-     * Saves the file and returns the path.
-     */
     private String saveFile(Part filePart, String fileName) throws IOException {
         String uploadDir = "/uploads"; // Change this path as needed
         String uploadPath = getServletContext().getRealPath(uploadDir);
