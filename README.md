@@ -20,10 +20,10 @@ This application is a complete **E-Commerce system** built to demonstrate modern
 ## 📸 Screenshots  
 
 ### **Login Form**  
-![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/150a38494bdb649fba819d779b23f208917ad5b9/Login.PNG)
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/e3fc43e883efa6522a30bbd1b0beaa8d48d49583/Login1.PNG)
 
 ### **Register Form**   
-![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/57744db0b1d5177f295a5f62910e0b8e47b3f6a9/Register.PNG)  
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/2d6789206c7ae5ef8f5ee76596f9292ad0f158a5/Register1.PNG)  
 
 ### **Shopping Cart**  
 _Description: A dynamic cart to manage selected products._  
