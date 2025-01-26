@@ -51,6 +51,8 @@ public class LoginServlet extends HttpServlet {
                             status
                     );
 
+                    resp.sendRedirect("http://localhost:8080/Ecommerce_Assignment_war_exploded/products");
+
                     if ("Deactive".equalsIgnoreCase(userDTO.getStatus())) {
                         session.setAttribute("message", "Your account is inactive. Please contact support.");
                         session.setAttribute("alertType", "danger");
@@ -64,7 +66,6 @@ public class LoginServlet extends HttpServlet {
                             session.setAttribute("message", "Login successful! Welcome, " + userDTO.getUsername() + ".");
                             session.setAttribute("alertType", "success");
 
-                            resp.sendRedirect("product_list.jsp");
                         } else {
                             session.setAttribute("message", "Access restricted to customers only.");
                             session.setAttribute("alertType", "danger");

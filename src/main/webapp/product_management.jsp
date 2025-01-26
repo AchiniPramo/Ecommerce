@@ -208,7 +208,6 @@
                 <thead>
                 <tr>
                     <th>Product Name</th>
-                    <th>Category</th>
                     <th>Price  (Rs.)</th>
                     <th>Stock</th>
                     <th>Photos</th>
@@ -228,8 +227,6 @@
                 %>
                 <tr>
                     <td><%= product.getName() %>
-                    </td>
-                    <td><%= product.getCategoryId() %>
                     </td>
                     <td><%= product.getPrice() %>
                     </td>
