@@ -159,7 +159,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= product.getName() %>
                     </h5>
-                    <p class="card-text">$<%= product.getPrice() %>
+                    <p class="card-text">Rs.<%= product.getPrice() %>
                     </p>
                     <button class="btn btn-primary btn-sm">Add to Cart</button>
                 </div>

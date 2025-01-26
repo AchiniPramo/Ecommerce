@@ -152,23 +152,23 @@
             </thead>
             <tbody>
             <tr>
-                <td>Product 1</td>
-                <td>$29.99</td>
+                <td>SmartPhone</td>
+                <td>Rs.50000.0</td>
                 <td>
                     <input type="number" name="quantity[1]" value="1" min="1">
                 </td>
-                <td>$29.99</td>
+                <td>Rs.5500.0</td>
                 <td>
                     <button type="submit" name="action" value="remove-1" class="btn btn-danger btn-sm">Remove</button>
                 </td>
             </tr>
             <tr>
-                <td>Product 2</td>
-                <td>$39.99</td>
+                <td>Oven</td>
+                <td>Rs.5500.0</td>
                 <td>
                     <input type="number" name="quantity[2]" value="2" min="1">
                 </td>
-                <td>$79.98</td>
+                <td>Rs.11000.0</td>
                 <td>
                     <button type="submit" name="action" value="remove-2" class="btn btn-danger btn-sm">Remove</button>
                 </td>
@@ -176,7 +176,7 @@
             </tbody>
         </table>
         <div class="text-end mt-3">
-            <strong>Total: $109.97</strong>
+            <strong>Total: Rs.61000.0</strong>
         </div>
         <div class="text-end mt-3">
             <button type="submit" name="action" value="checkout" class="btn btn-primary">Checkout</button>

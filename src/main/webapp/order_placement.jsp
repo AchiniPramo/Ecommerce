@@ -121,11 +121,11 @@
     <h2 class="order-title">Order Summary</h2>
     <form action="order-submit" method="post">
         <ul class="list-group">
-            <li class="list-group-item">Product 1 - $29.99 x 1</li>
-            <li class="list-group-item">Product 2 - $39.99 x 2</li>
+            <li class="list-group-item">Oven - Rs.5500.0 x 1</li>
+            <li class="list-group-item">SmartPhone - Rs.50000.0 x 2</li>
         </ul>
         <div class="text-end mt-3">
-            <strong>Total: $109.97</strong>
+            <strong>Total: Rs.55500.00</strong>
         </div>
         <div class="text-end mt-3">
             <button type="submit" class="btn btn-primary">Place Order</button>
