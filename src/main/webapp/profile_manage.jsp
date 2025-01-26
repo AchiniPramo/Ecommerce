@@ -138,7 +138,7 @@
 <div class="header">
   <a href="#" class="logo"><strong>FusionPay</strong></a>
   <nav>
-    <a href="product_list.jsp">Products</a>
+    <a href="products">Products</a>
     <a href="cart.jsp">Cart</a>
     <a href="order_placement.jsp">Orders</a>
     <a href="profile_manage.jsp">Profile</a>
