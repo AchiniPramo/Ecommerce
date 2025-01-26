@@ -25,6 +25,12 @@ This application is a complete **E-Commerce system** built to demonstrate modern
 ### **Register Form**   
 ![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/2d6789206c7ae5ef8f5ee76596f9292ad0f158a5/Register1.PNG)  
 
+### **Adming Form**   
+Admin can Product management(add,delete,update and view product), Category management(add,delete,update and view category), View orders and User managment(view all users and activate, deactivate users).
+
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/a90ed5adc1d57e554dac2c227a9ac366d41ebfd4/Admin.PNG)
+
+
 ### **Shopping Cart**  
 _Description: A dynamic cart to manage selected products._  
 ![Cart](#)  
