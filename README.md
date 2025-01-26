@@ -30,6 +30,10 @@ Admin can Product management(add,delete,update and view product), Category manag
 
 ![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/a90ed5adc1d57e554dac2c227a9ac366d41ebfd4/Admin.PNG)
 
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/ecd604d971a94e7d51a4ff6c6fa6393855fecfc4/UserManagement1.PNG)
+
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/ecd604d971a94e7d51a4ff6c6fa6393855fecfc4/CategoryManagement.PNG)
+
 ### **Product List**  
 ![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/3938652787df974c5e6713632a188b4bb43d8ede/Products.PNG)
 
