@@ -15,19 +15,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* General body styling */
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #ffffff; /* Light background */
-            color: #ffffff; /* White text */
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #f4f4f4, #eaeaea);
+            color: #333333;
         }
 
-        /* Header styles */
         .header {
-            background-color: #232f3e; /* Amazon-inspired header */
-            padding: 10px 10px;
+            background-color: #232f3e;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -37,7 +35,7 @@
             color: #ffffff;
             text-decoration: none;
             font-size: 16px;
-            margin: 0 10px;
+            margin: 0 15px;
         }
 
         .header a:hover {
@@ -45,40 +43,62 @@
         }
 
         .order-container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 50px auto;
-            background-color: #726f6f;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(94, 83, 83, 0.3);
+            background: #695f5f;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 20px 30px;
         }
 
         .order-title {
             font-size: 1.8rem;
             font-weight: bold;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #ff9900;
         }
 
         .list-group-item {
-            background-color:  #9f9696;
-            color: #ffffff;
+            background-color: #f9f9f9;
+            color: #333333;
             border: none;
+            border-radius: 8px;
             margin-bottom: 10px;
+            padding: 15px 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .list-group-item:last-child {
             margin-bottom: 0;
         }
 
+        .list-group-item span {
+            font-weight: bold;
+            color: #ff9900;
+        }
+
+        .total-container {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333333;
+        }
+
         .btn-primary {
-            background-color: #ff9900;
+            background: linear-gradient(to right, #ff9900, #e68a00);
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background-color: #e68a00;
+            background: linear-gradient(to left, #ff9900, #e68a00);
+            transform: translateY(-2px);
         }
 
         footer {
@@ -86,7 +106,7 @@
             padding: 10px 0;
             background-color: #232f3e;
             color: #ffffff;
-            margin-top: 170px;
+            margin-top: 120px;
         }
 
         footer a {
@@ -112,17 +132,24 @@
     </nav>
 </div>
 
+<!-- Order Container -->
 <div class="order-container">
     <h2 class="order-title">Order Summary</h2>
-    <form action="order-submit" method="post">
+    <form action="placeOrder" method="post">
         <ul class="list-group">
-            <li class="list-group-item">Oven - Rs.5500.0 x 1</li>
-            <li class="list-group-item">SmartPhone - Rs.50000.0 x 2</li>
+            <li class="list-group-item">
+                SmartPhone
+                <span>Rs. 50000.00 x 1</span>
+            </li>
+            <li class="list-group-item">
+                Oven
+                <span>Rs. 5500.00 x 2</span>
+            </li>
         </ul>
-        <div class="text-end mt-3">
-            <strong>Total: Rs.55500.00</strong>
+        <div class="total-container">
+            Total: Rs. 61000.00
         </div>
-        <div class="text-end mt-3">
+        <div class="text-end mt-4">
             <button type="submit" class="btn btn-primary">Place Order</button>
         </div>
     </form>
@@ -130,7 +157,7 @@
 
 <!-- Footer -->
 <footer>
-    <p>&copy; 2025 E-Commerce Store. All Rights Reserved.</p>
+    <p>&copy; 2025 FusionPay. All Rights Reserved.</p>
     <p>Follow us on
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
