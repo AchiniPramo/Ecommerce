@@ -112,14 +112,6 @@ Ecommerce_Assignment/
    ```
    http://localhost:8080/Ecommerce_Assignment_war_exploded
    ```
-
----
-
-## 🌟 Contributors  
-
-- **Your Name** - Full Stack Developer  
-- **Contributors** - Feel free to submit a pull request!  
-
 ---
 
 ## 📄 License  
