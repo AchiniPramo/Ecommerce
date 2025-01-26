@@ -1,4 +1,7 @@
 package lk.ijse.ecommerce_assignment.customer;
 
-public class PlaceOrderServlet {
+import jakarta.servlet.http.HttpServlet;
+
+public class PlaceOrderServlet extends HttpServlet {
+
 }

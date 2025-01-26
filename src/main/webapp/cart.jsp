@@ -19,13 +19,12 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #ffffff; /* White background */
-            color: #ffffff; /* White text */
+            background-color: #ffffff;
+            color: #ffffff;
         }
 
-        /* Header styles */
         .header {
-            background-color: #232f3e; /* Amazon-inspired header */
+            background-color: #232f3e;
             padding: 10px 10px;
             display: flex;
             justify-content: space-between;
@@ -40,14 +39,13 @@
         }
 
         .header a:hover {
-            color: #ff9900; /* Gold accent */
+            color: #ff9900;
         }
 
-        /* Cart container styling */
         .cart-container {
             max-width: 1000px;
             margin: 50px auto;
-            background-color: #726f6f; /* Slightly lighter background for the cart */
+            background-color: #726f6f;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);

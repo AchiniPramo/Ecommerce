@@ -41,15 +41,13 @@
         }
 
         .header a:hover {
-            color: #ff9900; /* Gold accent */
+            color: #ff9900;
         }
 
-        /* Order container styling */
         .order-container {
             max-width: 800px;
             margin: 50px auto;
-            background-color: #726f6f; /* Slightly lighter background */
-            padding: 20px;
+            background-color: #726f6f;
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(94, 83, 83, 0.3);
         }
@@ -83,7 +81,6 @@
             background-color: #e68a00;
         }
 
-        /* Footer styling */
         footer {
             text-align: center;
             padding: 10px 0;
@@ -104,7 +101,6 @@
     </style>
 </head>
 <body>
-<!-- Header -->
 <div class="header">
     <a href="#" class="logo"><strong>FusionPay</strong></a>
     <nav>
@@ -116,7 +112,6 @@
     </nav>
 </div>
 
-<!-- Order Container -->
 <div class="order-container">
     <h2 class="order-title">Order Summary</h2>
     <form action="order-submit" method="post">
