@@ -30,10 +30,19 @@ Admin can Product management(add,delete,update and view product), Category manag
 
 ![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/a90ed5adc1d57e554dac2c227a9ac366d41ebfd4/Admin.PNG)
 
+### **Product List**  
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/3938652787df974c5e6713632a188b4bb43d8ede/Products.PNG)
 
 ### **Shopping Cart**  
-_Description: A dynamic cart to manage selected products._  
-![Cart](#)  
+ A dynamic cart to manage selected products.
+
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/b8137a8095c888b4723fe478e571c5dea16abd49/Cart.PNG)  
+
+### **Place Order**  
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/75d11d19ed0f971d20ecf342123294888f884081/Placeorder.PNG).
+
+### **Profile Manage** 
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/0e60277b1a5105af50ae8a17f53940cce9b30a2a/ProfileManage.PNG).
 
 ---
 
