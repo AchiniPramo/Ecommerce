@@ -3,7 +3,7 @@
 Welcome to the **E-Commerce Web Application**, a feature-rich online shopping platform where customers can browse products, add items to their cart, and complete purchases seamlessly. This project showcases a professional e-commerce solution with a well-structured backend and an intuitive user interface.
 
 ---
-🔑 User Roles and Permissions
+## 🔑 User Roles and Permissions
 
 👤 Customer
 - Access URL:  http://localhost:8080/Ecommerce_Assignment_war_exploded
