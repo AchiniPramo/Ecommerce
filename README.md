@@ -3,6 +3,23 @@
 Welcome to the **E-Commerce Web Application**, a feature-rich online shopping platform where customers can browse products, add items to their cart, and complete purchases seamlessly. This project showcases a professional e-commerce solution with a well-structured backend and an intuitive user interface.
 
 ---
+🔑 User Roles and Permissions
+
+👤 Customer
+Access URL:  http://localhost:8080/Ecommerce_Assignment_war_exploded
+Features:
+User authentication (signup, login, logout)
+Browse products by category, search by name, or sort by price
+Manage shopping cart and checkout
+View order history
+Update profile details and password
+
+👨‍💼 Admin
+Access URL: http://localhost:8080/Ecommerce_Assignment_war_exploded/admin.jsp
+Features:
+Register customers and admins
+Manage products, categories, and orders
+Activate or deactivate customer accounts
 
 ## 🚀 Project Overview  
 
