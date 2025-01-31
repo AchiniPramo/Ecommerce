@@ -135,12 +135,6 @@ Ecommerce_Assignment/
    ```
 ---
 
-## 📄 License  
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.  
-
----
-
 ## 📬 Contact  
 
 Have questions or suggestions? Feel free to reach out:  
