@@ -69,7 +69,7 @@ Admin can Product management(add,delete,update and view product), Category manag
 
 ## 🎥 Video Demonstration  
 
-[Click here to watch the demo on YouTube!](#)  
+[Click here to watch the demo on YouTube!](https://youtu.be/tNaiAbQ-0lM?si=fbkxnwc18jNsgLKm)  
 
 This video walkthrough highlights:  
 1. User registration and login.  
