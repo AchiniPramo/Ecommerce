@@ -45,22 +45,22 @@ This application is a complete **E-Commerce system** built to demonstrate modern
 ### **Adming Form**   
 Admin can Product management(add,delete,update and view product), Category management(add,delete,update and view category), View orders and User managment(view all users and activate, deactivate users).
 
-![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/a90ed5adc1d57e554dac2c227a9ac366d41ebfd4/Admin.PNG)
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/f7197fce7042b88617221419a7c10c60eed2654c/Capture4.PNG)
 
 ![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/ecd604d971a94e7d51a4ff6c6fa6393855fecfc4/UserManagement1.PNG)
 
 ![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/ecd604d971a94e7d51a4ff6c6fa6393855fecfc4/CategoryManagement.PNG)
 
 ### **Product List**  
-![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/3938652787df974c5e6713632a188b4bb43d8ede/Products.PNG)
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/87225c71063001c4b5da80680dda5eb1766c1cd0/productList.PNG)
 
 ### **Shopping Cart**  
  A dynamic cart to manage selected products.
 
-![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/b8137a8095c888b4723fe478e571c5dea16abd49/Cart.PNG)  
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/3d60310fcc2db0a0104d6402244bb446879e90af/ShopingCart.PNG)  
 
 ### **Place Order**  
-![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/6cfe2262ec1ca02d38d35950f5fed59e63149ce5/OrderPlacement.PNG).
+![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/0d4200ed9096c6692c5f903cd3862ed656406613/PlaceOrder.PNG).
 
 ### **Profile Manage** 
 ![image-alt](https://github.com/AchiniPramo/Ecommerce/blob/0e60277b1a5105af50ae8a17f53940cce9b30a2a/ProfileManage.PNG).
